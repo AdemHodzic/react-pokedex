@@ -1,0 +1,7 @@
+NavbarBrand {
+  transition: all 0.1s;
+}
+
+NavbarBrand:hover {
+  color: #f45342;
+}
