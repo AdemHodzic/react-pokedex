@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import PokemonCard from './Card';
 import Fetching from './Fetching';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
+import {AuthContext} from '../context/authContext'
+import {Redirect} from 'react-router'
 
 const CardContainer = () => {
   const api = 'http://localhost:8080/pokemons';
@@ -12,6 +14,7 @@ const CardContainer = () => {
   const [pokemonCards, setPokemonCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [failedToFetch, setFailedToFetch] = useState(false);
+  const context = useContext(AuthContext)
 
   const fetchData = async () => {
     try {
@@ -29,25 +32,23 @@ const CardContainer = () => {
     fetchData()
   }, [])
   
+  if (!context.auth) {
+    return <Redirect to="/auth"/>
+  }
+
+  if (failedToFetch) {
+    return <Fetching success={false} />
+  }
+
+  if (isLoading) {
+    return <Fetching success={true} />
+  }
   return (
-    <div>
-      {
-        failedToFetch ? 
-        (
-          <Fetching success={false} />
-        )
-        :(
-        isLoading ? (
-          <Fetching success={true} />
-        ) : (
-          <Container>
-            <Row>
-              {pokemonCards}
-            </Row>
-          </Container>
-        ))
-      }
-    </div>
+    <Container>
+      <Row>
+        {pokemonCards}
+      </Row>
+    </Container>
   )
 }
 

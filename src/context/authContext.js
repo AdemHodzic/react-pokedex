@@ -1,9 +1,16 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const AuthContext = React.createContext({auth: false, user: null});
+export const AuthContext = React.createContext({
+  auth: false, 
+  user: null,
+  error: null,
+  logIn: (name, password) => {},
+  register: (name, password) => {},
+  logOut : () => {}
+});
 
-const AuthProvider = (props) => {
+export const AuthProvider = (props) => {
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
@@ -20,8 +27,29 @@ const AuthProvider = (props) => {
       setUser(data.user);
       setIsAuth(data.auth);
     } catch (e) {
-      setError({message: e.message});
+      setError(e);
     }
+  }
+
+  const register= async (name, password) => {
+    try {
+      const request = await axios.post(api + '/register', {name,password})
+      if (request.status !== 200) {
+        throw new Error(request.data.error)
+      }
+      const data = await request.data;
+      setUser(data.user);
+      setIsAuth(data.auth);
+    } catch (e) {
+      setError(e)
+    }
+  }
+
+  const logOut = async () => {
+    const request = await axios.get(api + '/logout');
+    const data = await request.data;
+    setUser(data.user);
+    setIsAuth(data.auth);
   }
 
   return (
@@ -29,11 +57,14 @@ const AuthProvider = (props) => {
       value={{
         isAuth: isAuth,
         user: user,
-        login: logIn,
-
+        error: error,
+        logIn: logIn,
+        register: register,
+        logOut: logOut
       }}
     >
       {props.children}
     </AuthContext.Provider>
   )
 }
+
