@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
@@ -15,6 +15,7 @@ const FormDiv = styled.div`
   margin: 10%;
   background-color: #ffffff;
   align-items: center;
+  border-radius: 5%; 
 `
 
 const StyledTitle = styled.h3`
@@ -58,15 +59,25 @@ const LoginPage = () => {
   
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
   const context = useContext(AuthContext)
 
+  useEffect(() => {
+    setError(null)
+    setUsername('')
+    setPassword('')
+  }, [])
+
   const handleChangeUsername = (event) => setUsername(event.target.value) 
-  const handleChangePassword = (event) => setPassword(event.target.value) 
+  const handleChangePassword = (event) => setPassword(event.target.value)
   const handleSubmit = async (event) => {
     event.preventDefault()
+    if (username.length === 0 || password.length === 0) {
+      setError(new Error('One or more fields are empty'))
+    }
     await context.logIn(username, password)
+    setError(context.error)
   }
-
 
   if (context.auth) {
     return <Redirect to="/" />
@@ -77,7 +88,7 @@ const LoginPage = () => {
       <FormDiv>
         <StyledTitle>Welcome back, trainer!</StyledTitle>
         {
-          context.error ? <Alert variant="danger">{context.error.message}</Alert> : <span></span>
+          error ? <Alert variant="danger">{context.error.message}</Alert> : <span></span>
         }
         <StyledForm onSubmit={handleSubmit}>
           <Form.Group controlId="username">

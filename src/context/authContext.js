@@ -16,6 +16,13 @@ export const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const lAuth = localStorage.getItem('auth')
+    const lUser = localStorage.getItem('user')
+    setIsAuth(lAuth)
+    setUser(lUser)
+  }, [])
+
   const logIn = async (name, password) => {
     try {
       const request = await axios.post(api + '/login', {name,password})
@@ -25,7 +32,7 @@ export const AuthProvider = (props) => {
       }
       const data = await request.data;
       setUser(data.user);
-      setIsAuth(true);
+      setIsAuth(data.auth);
     } catch (e) {
       setError(e);
       setIsAuth(false)

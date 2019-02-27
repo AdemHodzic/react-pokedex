@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import NavbarBrand from 'react-bootstrap/NavbarBrand';
+import Dropdown from 'react-bootstrap/Dropdown'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { AuthContext } from '../context/authContext';
 
 const StyledLink = styled(Link)`
   text-decoration: 'none';
@@ -14,13 +18,43 @@ const StyledLink = styled(Link)`
   }
 `
 
+const StyledNavbar = styled(Navbar)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
 const PokemonNavbar = () => {
+
+  const context = useContext(AuthContext)
+
+  const logout = async () => await context.logOut() 
+
+  const dropDown = () => {
+    return context.auth ? (
+      <Dropdown drop={'left'}>
+        <Dropdown.Toggle>
+          <FontAwesomeIcon icon={faUser}/>
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item >
+            <StyledLink style={{textDecoration: 'none'}} to="/profile">
+              My Profile
+            </StyledLink>
+          </Dropdown.Item>
+          <Dropdown.Item onClick={logout}>Log Out</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    ) : (<span></span>)
+  }
+
   return (
-    <Navbar bg="light" expand="lg">
+    <StyledNavbar bg="light" expand="lg">
       <NavbarBrand >
         <StyledLink to="/" style={{textDecoration: 'none'}}>Pokedex</StyledLink>
       </NavbarBrand>
-    </Navbar>    
+      {dropDown()}
+    </StyledNavbar>    
   )
 }
 
