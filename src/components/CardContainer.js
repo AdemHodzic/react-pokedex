@@ -9,7 +9,7 @@ import {Redirect} from 'react-router'
 
 const CardContainer = () => {
   const api = 'http://localhost:8080/pokemons';
-  
+  console.log('CARD CONTAINER')  
 
   const [pokemonCards, setPokemonCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

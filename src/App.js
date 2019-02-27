@@ -8,7 +8,6 @@ import PokemonDetails from './components/PokemonDetails';
 
 import {AuthProvider} from './context/authContext';
 import {AuthPage} from './pages/AuthPage'
-
 const App = (props) =>  {
   return (
     <AuthProvider>

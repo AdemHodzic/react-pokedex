@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 export const AuthContext = React.createContext({
@@ -11,10 +11,10 @@ export const AuthContext = React.createContext({
 });
 
 export const AuthProvider = (props) => {
+  const api = 'http://localhost:8080';
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const api = 'http://localhost:8080';
 
   const logIn = async (name, password) => {
     try {
@@ -25,9 +25,10 @@ export const AuthProvider = (props) => {
       }
       const data = await request.data;
       setUser(data.user);
-      setIsAuth(data.auth);
+      setIsAuth(true);
     } catch (e) {
       setError(e);
+      setIsAuth(false)
     }
   }
 
@@ -42,6 +43,7 @@ export const AuthProvider = (props) => {
       setIsAuth(data.auth);
     } catch (e) {
       setError(e)
+      setIsAuth(false)
     }
   }
 
@@ -55,7 +57,7 @@ export const AuthProvider = (props) => {
   return (
     <AuthContext.Provider
       value={{
-        isAuth: isAuth,
+        auth: isAuth,
         user: user,
         error: error,
         logIn: logIn,
