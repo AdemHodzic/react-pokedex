@@ -17,11 +17,9 @@ const CardContainer = () => {
 
   const fetchData = async () => {
     try {
-
-    let result = await axios(api);
-    setPokemonCards(result.data.map(elem => <PokemonCard key={elem.id} id={elem.id} name={elem.name} image={'http://' + elem.image} />));
-    setIsLoading(false);
-
+      let result = await axios(api);
+      setPokemonCards(result.data.map(elem => <PokemonCard key={elem.id} id={elem.id} name={elem.name} image={'http://' + elem.image} />));
+      setIsLoading(false);
     } catch (error) {
       setFailedToFetch(true);    
     }

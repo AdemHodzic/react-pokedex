@@ -15,11 +15,17 @@ const FormDiv = styled.div`
   background-color: #ffffff;
   align-items: center;
   border-radius: 5%;
+  @media screen and (max-width: 630px) {
+    width: 90%;
+  }
 `
 
 const StyledTitle = styled.h3`
   color: #007bff;
   padding-top: 5%;
+  @media screen and (max-width: 630px) {
+    font-size: 14px;
+  }
 `
 
 const StyledDiv = styled.div`
@@ -27,6 +33,7 @@ const StyledDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
 `
 const StyledLink = styled(Link)`
   text-decoration: 'none';
@@ -51,6 +58,9 @@ const StyledButton = styled(Button)`
   transition: all 0.2s ease-out;
   &:hover {
     transform: scale(1.15);
+  }
+  @media screen and (max-width: 630px) {
+    font-size: 12px;
   }
 `
 
@@ -77,6 +87,11 @@ const RegisterPage = () => {
       setError(new Error('Passwords do not match.'))
       return
     }
+
+    if(password.length === 0 || passwordConfirm.length === 0 || username.length === 0) {
+      setError(new Error('Fields cannot be left empty.'))
+      return
+    }
     await context.register(username, password)
     setError(context.error)
   }
@@ -91,7 +106,7 @@ const RegisterPage = () => {
       <FormDiv>
         <StyledTitle>Welcome back, trainer!</StyledTitle>
         {
-          error ? <Alert variant="danger">{context.error.message}</Alert> : <span></span>
+          error ? <Alert variant="danger">{error.message}</Alert> : <span></span>
         }
         <StyledForm onSubmit={handleSubmit}>
           <Form.Group controlId="username">

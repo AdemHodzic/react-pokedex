@@ -23,7 +23,10 @@ const FormDiv = styled.div`
   background-color: #ffffff;
   align-items: center;
   border-radius: 5%;
-  
+  padding-top: 5%;
+  @media screen and (max-width: 630px) {
+    width: 90%;
+  }
 `
 const StyledTitle = styled.h3`
   color: #007bff;

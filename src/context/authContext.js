@@ -71,6 +71,7 @@ export const AuthProvider = (props) => {
         register: register,
         logOut: logOut
       }}
+      style={{height: '100%'}}
     >
       {props.children}
     </AuthContext.Provider>

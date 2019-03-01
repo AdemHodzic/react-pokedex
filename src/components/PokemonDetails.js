@@ -10,6 +10,21 @@ import styled from 'styled-components'
 import { AuthContext } from '../context/authContext';
 import Fetching from './Fetching'
 
+const StyledTable = styled(Table)`
+  width: 40%;
+  margin-top: 2%;
+  @media screen and (max-width: 630px) {
+    width: 90%;
+  }
+`
+
+const StyledHead = styled.thead`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+`
+
 const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -74,7 +89,6 @@ const PokemonDetails = (props) => {
   if (isLoading) {
     return <Fetching success={true}/>
   } else {
-    console.log(pokemon)
     statsTable = pokemon.stats.map(stat => {
       return (
         <tr>
@@ -104,15 +118,15 @@ const PokemonDetails = (props) => {
 
   return (
     <StyledDiv>
-      <Table striped bordered hover variant="dark" style={{width: '40%', marginTop: '2%'}}>
-        <thead>
-          <Button variant="outline-light" size="lg" block style={{margin: '1%', width: '142%'}}>
+      <StyledTable striped bordered hover variant="dark">
+        <StyledHead>
+          <Button variant="outline-light" size="lg" block style={{margin: '1%'}}>
             <StyledLink to="/" style={{textDecoration: 'none'}}>
               Back to All Pokemons
             </StyledLink>
           </Button>
-          <Image src={pokemon.image} alt="Here is the image of pokemon" style={{minWidth: '100%'}} alt="Image of a pokemon"/>
-        </thead>
+          <Image src={pokemon.image} alt="Here is the image of pokemon" style={{minWidth: '100%'}} />
+        </StyledHead>
         <tbody>
           <tr>
             <td>Name</td>
@@ -132,7 +146,7 @@ const PokemonDetails = (props) => {
           </tr>
         </tbody>
         {statsTable}
-      </Table>
+      </StyledTable>
     </StyledDiv>
   )
 }
