@@ -10,7 +10,7 @@ import { AuthContext } from '../context/authContext';
 
 const StyledLink = styled(Link)`
   text-decoration: 'none';
-  color: #111111;
+  color: #ffffff;
   transition: 0.1s;
   &:hover {
     text-decoration: 'none';
@@ -37,11 +37,6 @@ const PokemonNavbar = () => {
           <FontAwesomeIcon icon={faUser}/>
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item >
-            <StyledLink style={{textDecoration: 'none'}} to="/profile">
-              My Profile
-            </StyledLink>
-          </Dropdown.Item>
           <Dropdown.Item onClick={logout}>Log Out</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
@@ -49,7 +44,7 @@ const PokemonNavbar = () => {
   }
 
   return (
-    <StyledNavbar bg="light" expand="lg">
+    <StyledNavbar bg="dark" expand="lg">
       <NavbarBrand >
         <StyledLink to="/" style={{textDecoration: 'none'}}>Pokedex</StyledLink>
       </NavbarBrand>

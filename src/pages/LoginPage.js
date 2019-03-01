@@ -7,6 +7,13 @@ import {Redirect} from 'react-router'
 import styled from 'styled-components'
 import { AuthContext } from '../context/authContext';
 
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`
 
 const FormDiv = styled.div`
   display: flex;
@@ -15,19 +22,15 @@ const FormDiv = styled.div`
   margin: 10%;
   background-color: #ffffff;
   align-items: center;
-  border-radius: 5%; 
+  border-radius: 5%;
+  
 `
-
 const StyledTitle = styled.h3`
   color: #007bff;
   padding-top: 5%;
-`
-
-const StyledDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @media screen and (max-width: 630px) {
+    font-size: 14px;
+  }
 `
 const StyledLink = styled(Link)`
   text-decoration: 'none';
@@ -40,7 +43,7 @@ const StyledLink = styled(Link)`
 
 const StyledButtonContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
 `
 
@@ -52,6 +55,9 @@ const StyledButton = styled(Button)`
   transition: all 0.2s ease-out;
   &:hover {
     transform: scale(1.15);
+  }
+  @media screen and (max-width: 630px) {
+    font-size: 12px;
   }
 `
 

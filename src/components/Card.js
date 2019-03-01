@@ -33,7 +33,7 @@ const PokemonCard = (props) =>  {
   const pokemonName = props.name.charAt(0).toUpperCase() + props.name.slice(1);
   const pokemonDetailsUrl = `/pokemons/${props.id}`
   return (
-    <Card style={{width: '18rem', margin: '1rem', color: 'black'}}>
+    <Card style={{width: '18rem', margin: '1rem', color: '#ffffff', backgroundColor: '#1a1a1a'}}>
       <Card.Img variant="top" src={props.image}/>
       <Card.Body>
         <CenterVertical>

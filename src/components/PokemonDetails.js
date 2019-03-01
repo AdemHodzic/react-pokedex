@@ -104,14 +104,14 @@ const PokemonDetails = (props) => {
 
   return (
     <StyledDiv>
-      <Table striped bordered hover variant="dark" style={{width: '40%'}}>
+      <Table striped bordered hover variant="dark" style={{width: '40%', marginTop: '2%'}}>
         <thead>
           <Button variant="outline-light" size="lg" block style={{margin: '1%', width: '142%'}}>
             <StyledLink to="/" style={{textDecoration: 'none'}}>
               Back to All Pokemons
             </StyledLink>
           </Button>
-          <Image src={pokemon.image} alt="Here is the image of pokemon" style={{minWidth: '100%'}}/>
+          <Image src={pokemon.image} alt="Here is the image of pokemon" style={{minWidth: '100%'}} alt="Image of a pokemon"/>
         </thead>
         <tbody>
           <tr>
