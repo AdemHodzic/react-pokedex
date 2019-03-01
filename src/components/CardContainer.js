@@ -8,7 +8,7 @@ import {AuthContext} from '../context/authContext'
 import {Redirect} from 'react-router'
 
 const CardContainer = () => {
-  const api = 'http://localhost:8080/pokemons';
+  const api = 'https://pokedex-232720.appspot.com/pokemons';
 
   const [pokemonCards, setPokemonCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

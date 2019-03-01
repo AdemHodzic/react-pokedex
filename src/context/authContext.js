@@ -11,7 +11,7 @@ export const AuthContext = React.createContext({
 });
 
 export const AuthProvider = (props) => {
-  const api = 'http://localhost:8080';
+  const api = 'https://pokedex-232720.appspot.com';
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
