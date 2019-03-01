@@ -1,0 +1,16 @@
+{
+  "main.css": "/pokedex/static/css/main.7487773f.chunk.css",
+  "main.js": "/pokedex/static/js/main.7a8f6d42.chunk.js",
+  "main.js.map": "/pokedex/static/js/main.7a8f6d42.chunk.js.map",
+  "runtime~main.js": "/pokedex/static/js/runtime~main.c92f8f4b.js",
+  "runtime~main.js.map": "/pokedex/static/js/runtime~main.c92f8f4b.js.map",
+  "static/js/2.0e1d9721.chunk.js": "/pokedex/static/js/2.0e1d9721.chunk.js",
+  "static/js/2.0e1d9721.chunk.js.map": "/pokedex/static/js/2.0e1d9721.chunk.js.map",
+  "index.html": "/pokedex/index.html",
+  "precache-manifest.a8bf02db5f74f597527d6aa10ed6023b.js": "/pokedex/precache-manifest.a8bf02db5f74f597527d6aa10ed6023b.js",
+  "service-worker.js": "/pokedex/service-worker.js",
+  "static/css/main.7487773f.chunk.css.map": "/pokedex/static/css/main.7487773f.chunk.css.map",
+  "static/media/App.css": "/pokedex/static/media/pokemon-font.36d26dbc.ttf",
+  "static/media/sad_pikachu.webp": "/pokedex/static/media/sad_pikachu.e8ddb9b8.webp",
+  "static/media/working_pikachu.gif": "/pokedex/static/media/working_pikachu.674fe440.gif"
+}
